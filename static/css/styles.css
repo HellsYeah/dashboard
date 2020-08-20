@@ -26,3 +26,18 @@ ul {
 .legend td {
   padding-right: 0.25em;
 }
+
+.features .value {
+  border-radius: 9px;
+  font-size: 1.25em;
+  font-weight: bold;
+  padding: 4px 16px;
+  color: #ccc;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.features .value.active {
+  color: #46BFBD;
+  background-color: #d8f0ef;
+}

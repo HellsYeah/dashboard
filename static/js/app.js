@@ -2,6 +2,7 @@ import navbar from './components/navbar.js';
 import entrypoints from './components/entrypoints.js';
 import doughnut from './components/doughnut.js';
 import doughnut_cards from './components/doughnut_cards.js';
+import features from './components/features.js';
 
 const hoverBackgroundColor = ["#5AD3D1", "#FFC870", "#FF5A5E"];
 const backgroundColor = ["#46BFBD", "#FDB45C", "#F7464A"];
@@ -93,12 +94,30 @@ new Vue({
         },
       },
     ],
+    features: [
+      {
+        name: 'tracing',
+        value: 'Zipkin',
+        active: false,
+      },
+      {
+        name: 'metrics',
+        value: 'Prometheus',
+        active: false,
+      },
+      {
+        name: 'accesslog',
+        value: 'ON',
+        active: true,
+      },
+    ]
   },
   components: {
     navbar,
     entrypoints,
     doughnut,
     doughnut_cards,
+    features,
   }
 })
 
