@@ -1,0 +1,28 @@
+html,body {
+  background-color: #eee;
+  font-family: 'Nunito', sans-serif;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding:0;
+}
+
+.extra-bold {
+  font-weight: 700;
+}
+
+.card {
+  border-radius: 9px;
+}
+
+.legend {
+  margin-top:auto;
+  margin-bottom:auto;
+
+}
+
+.legend td {
+  padding-right: 0.25em;
+}
