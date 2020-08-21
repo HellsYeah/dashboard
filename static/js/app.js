@@ -10,114 +10,44 @@ const labels = ["Success", "Warnings", "Errors"];
 
 new Vue({
   el: '#app',
-  data: {
-    entrypoints: [
-      {
-        name: "web",
-        port: 80
-      },
-      {
-        name: "web-secured",
-        port: 443
-      },
-      {
-        name: "elite",
-        port: 31337
-      },
-    ],
-    http_data: [
-      {
-        name: "Routers",
-        data: {
-          labels: labels,
-          datasets: [
-            {
-              data: [70, 20, 10],
-              backgroundColor: backgroundColor,
-              hoverBackgroundColor: hoverBackgroundColor
-            }
-          ]
-        },
-      },
-      {
-        name: "Services",
-        data: {
-          labels: labels,
-          datasets: [
-            {
-              data: [90, 3, 7],
-              backgroundColor: backgroundColor,
-              hoverBackgroundColor: hoverBackgroundColor
-            }
-          ]
-        },
-      },
-      {
-        name: "Middlewares",
-        data: {
-          labels: labels,
-          datasets: [
-            {
-              data: [80, 15, 5],
-              backgroundColor: backgroundColor,
-              hoverBackgroundColor: hoverBackgroundColor
-            }
-          ]
-        },
-      },
-    ],
-    tcp_data: [
-      {
-        name: "Routers",
-        data: {
-          labels: labels,
-          datasets: [
-            {
-              data: [70, 30, 154],
-              backgroundColor: backgroundColor,
-              hoverBackgroundColor: hoverBackgroundColor
-            }
-          ]
-        },
-      },
-      {
-        name: "Services",
-        data: {
-          labels: labels,
-          datasets: [
-            {
-              data: [180, 32, 17],
-              backgroundColor: backgroundColor,
-              hoverBackgroundColor: hoverBackgroundColor
-            }
-          ]
-        },
-      },
-    ],
-    features: [
-      {
-        name: 'tracing',
-        value: 'Zipkin',
-        active: false,
-      },
-      {
-        name: 'metrics',
-        value: 'Prometheus',
-        active: false,
-      },
-      {
-        name: 'accesslog',
-        value: 'ON',
-        active: true,
-      },
-    ]
-  },
+  data: () => ({
+    entrypoints: null,
+    http_data: null,
+    tcp_data: null,
+    features: null}),
   components: {
     navbar,
     entrypoints,
     doughnut,
     doughnut_cards,
     features,
+  },
+
+  created() {
+    self = this;
+    axios
+      .get('http://127.0.0.1:8080/api/entrypoints/')
+      .then(function(response) {
+          self.entrypoints = response.data;
+        });
+    axios
+      .get('http://127.0.0.1:8080/api/http_data/')
+      .then(function(response) {
+          self.http_data = response.data;
+        });
+    axios
+      .get('http://127.0.0.1:8080/api/tcp_data/')
+      .then(function(response) {
+          self.tcp_data = response.data;
+        });
+    axios
+      .get('http://127.0.0.1:8080/api/features/')
+      .then(function(response) {
+          self.features = response.data;
+        });
+      }
   }
-})
+)
+
+
 
